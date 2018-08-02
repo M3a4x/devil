@@ -1,15 +1,15 @@
 const Eris = require("eris");
 var kboosh = new Eris("NDczNTk0MzE2MzAwODc3ODM1.DkHe4Q.zFwIhKIVUK49a9psAKOWnZVOJpw");
-var kboosh_id = "473572390731776000";
+var kboosh_id = "474540919396237343";
                     var i = "0";
                     var x = "0";
 kboosh.on("voiceChannelJoin", (msg) => {
     x++;
-    kboosh.editChannel(kboosh_id, { name : "R3bMC Voice ⇏「" + x + "」"});
+    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
 });
 kboosh.on("voiceChannelLeave", (msg) => {
     x--;
-    kboosh.editChannel(kboosh_id, { name : "R3bMC Voice ⇏「" + x + "」"});
+    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
 });
 
 kboosh.on("messageCreate", (msg) => {
@@ -30,7 +30,7 @@ kboosh.on("messageCreate", (msg) => {
 }
     console.log(x);
     kboosh.createMessage(msg.channel.id, "Voice Online Members Now Are: **"+x+"** Members!");
-    kboosh.editChannel(kboosh_id, { name : "R3bMC ⇏「"+x+"」"});
+    kboosh.editChannel(kboosh_id, { name : "Devil ⇏「"+x+"」"});
     messages = [];
 }, 1);
     }

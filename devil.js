@@ -39,4 +39,4 @@ kboosh.on("messageCreate", (msg) => {
 
   
 
-kboosh.connect("NDczNTk0MzE2MzAwODc3ODM1.DkHe4Q.zFwIhKIVUK49a9psAKOWnZVOJpw")
+kboosh.connect("NDU1NTE1NjQ5NzYzMTgwNTU0.DkR_8g.catXFDkty2brRljI30K_RLEsZOc")

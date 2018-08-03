@@ -1,19 +1,42 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-
-client.on('guildMemberAdd', member => {
-    member.guild.channels.get('474540919396237343').setName(`عددنا الأن: ${member.guild.memberCount}`);
-    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
-    member.guild.channels.get('474546295441195010').setName(`الأغضاء المتواجدين في الرومات الصوتيه: ${humans}`);
-    let bots = member.guild.members.filter(m => m.user.bot).size
-    member.guild.channels.get('474558617014501386').setName(`البوتات المتواجدين في الروم الصوتيه: ${bots}`);
+const Eris = require("eris");
+var kboosh = new Eris("NDU1NTE1NjQ5NzYzMTgwNTU0.DkSAEw.aPlLk93jEH_SGm5LArbQ2pr5r5Y");
+var kboosh_id = "474540919396237343";
+                    var i = "0";
+                    var x = "0";
+kboosh.on("voiceChannelJoin", (msg) => {
+    x++;
+    kboosh.editChannel(kboosh_id, { name : "Devil Community ©. ⇏「" + x + "」"});
 });
-client.on('guildMemberRemove', member => {
-    member.guild.channels.get('474540919396237343').setName(`عددنا الأن: ${member.guild.memberCount}`);
-    let humans = member.guild.memberCount - member.guild.members.filter(m => m.user.bot).size
-    member.guild.channels.get('474546295441195010').setName(`الأغضاء المتواجدين في الرومات الصوتيه: ${humans}`);
-    let bots = member.guild.members.filter(m => m.user.bot).size
-    member.guild.channels.get('474558617014501386').setName(`البوتات المتواجدين في الروم الصوتيه: ${bots}`);
+kboosh.on("voiceChannelLeave", (msg) => {
+    x--;
+    kboosh.editChannel(kboosh_id, { name : "Devil Community ©. ⇏「" + x + "」"});
 });
 
-client.login('NDU1NTE1NjQ5NzYzMTgwNTU0.DkSAEw.aPlLk93jEH_SGm5LArbQ2pr5r5Y')
+kboosh.on("messageCreate", (msg) => {
+    if(msg.author.id !== "194559857536270336") return kboosh.createMessage('__**This Command is only for the bot Owner**__');
+    if(msg.content === "#voice") {
+        let users = msg.channel.guild.members.map(m => m.user.id);
+        let messages = [];
+        messages.push(users);
+        setTimeout(function(){
+        while (i <= messages[0].length - 1) {
+            check = msg.channel.guild.members.get(messages[0][i]);
+        if(!check.voiceState.channelID){
+                i++;
+        }else{
+                x++;
+                i++;
+        }
+}
+    console.log(x);
+    kboosh.createMessage(msg.channel.id, "Voice Online Members Now Are: **"+x+"** Members!");
+    kboosh.editChannel(kboosh_id, { name : "Devil Community ©. ⇏「"+x+"」"});
+    messages = [];
+}, 1);
+    }
+});
+
+
+  
+
+kboosh.connect("NDU1NTE1NjQ5NzYzMTgwNTU0.DkSAEw.aPlLk93jEH_SGm5LArbQ2pr5r5Y")

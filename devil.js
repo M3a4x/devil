@@ -1,5 +1,5 @@
 const Eris = require("eris");
-var kboosh = new Eris("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbqAA.xgnS9WLFStWyVt1Ny2gxW6tXdi4");
+var kboosh = new Eris("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbtKA._BUN34JTb_W3ruGS7hdpo-E0iHY");
 var kboosh_id = "475204815736274974";
                     var i = "0";
                     var x = "0";
@@ -39,4 +39,4 @@ kboosh.on("messageCreate", (msg) => {
 
   
 
-kboosh.connect("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbqAA.xgnS9WLFStWyVt1Ny2gxW6tXdi4")
+kboosh.connect("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbtKA._BUN34JTb_W3ruGS7hdpo-E0iHY")

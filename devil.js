@@ -5,11 +5,11 @@ var kboosh_id = "475204815736274974";
                     var x = "0";
 kboosh.on("voiceChannelJoin", (msg) => {
     x++;
-    kboosh.editChannel(kboosh_id, { name : "Devil Community ⇏「" + x + "」"});
+    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
 });
 kboosh.on("voiceChannelLeave", (msg) => {
     x--;
-    kboosh.editChannel(kboosh_id, { name : "Devil Community ⇏「" + x + "」"});
+    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
 });
 
 kboosh.on("messageCreate", (msg) => {
@@ -29,8 +29,8 @@ kboosh.on("messageCreate", (msg) => {
         }
 }
     console.log(x);
-    kboosh.createMessage(msg.channel.id, "Devil Community © Online Members Now Are: **"+x+"** Members!");
-    kboosh.editChannel(kboosh_id, { name : "Devil Community ⇏「"+x+"」"});
+    kboosh.createMessage(msg.channel.id, "Voice Online Members Now Are: **"+x+"** Members!");
+    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「"+x+"」"});
     messages = [];
 }, 1);
     }

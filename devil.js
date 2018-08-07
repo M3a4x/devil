@@ -1,42 +1,50 @@
-const Eris = require("eris");
-var kboosh = new Eris("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbtKA._BUN34JTb_W3ruGS7hdpo-E0iHY");
-var kboosh_id = "475204815736274974";
-                    var i = "0";
-                    var x = "0";
-kboosh.on("voiceChannelJoin", (msg) => {
-    x++;
-    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
-});
-kboosh.on("voiceChannelLeave", (msg) => {
-    x--;
-    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「" + x + "」"});
-});
+client.on('message', message => { // Leaked by [ @M3a4x ]
+   if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'bc')) {
+if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
+if(!message.member.hasPermission('ADMINISTRATOR')) return
+message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+const args = message.content.split(" ").slice(1).join(" ")
+const BcList = new Discord.RichEmbed()
+.setThumbnail(message.author.avatarURL)
+.setAuthor(`محتوى الرساله : *{args}`)
+.setDescription(`**برودكاست بـ امبد 📝\nبرودكاست بدون امبد✏ \nلديك دقيقه للأختيار قبل الغاء البرودكاست**`)
+if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(BcList).then(msg => {
+msg.react('📝')
+.then(() => msg.react('✏'))
+.then(() =>msg.react('📝'))
 
-kboosh.on("messageCreate", (msg) => {
-    if(msg.author.id !== "194559857536270336") return kboosh.createMessage('__**This Command is only for the bot Owner**__');
-    if(msg.content === "%voice") {
-        let users = msg.channel.guild.members.map(m => m.user.id);
-        let messages = [];
-        messages.push(users);
-        setTimeout(function(){
-        while (i <= messages[0].length - 1) {
-            check = msg.channel.guild.members.get(messages[0][i]);
-        if(!check.voiceState.channelID){
-                i++;
-        }else{
-                x++;
-                i++;
-        }
+var EmbedBcFilter = (reaction, user) => reaction.emoji.name === '📝' && user.id === message.author.id;
+var NormalBcFilter = (reaction, user) => reaction.emoji.name === '✏' && user.id === message.author.id;
+
+var EmbedBc = msg.createReactionCollector(EmbedBcFilter, { time: 60000 });
+var NormalBc = msg.createReactionCollector(NormalBcFilter, { time: 60000 });
+
+
+EmbedBc.on("collect", r => {
+
+message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
+message.guild.members.forEach(m => {
+var EmbedRep = args.replace('<server>' ,message.guild.name).replace('<user>', m).replace('<by>', `*{message.author.username}#*{message.author.discriminator}`)
+var bc = new
+Discord.RichEmbed()
+.setColor('RANDOM')
+.setDescription(EmbedRep)
+.setThumbnail(message.author.avatarURL)
+m.send({ embed: bc })
+msg.delete();
+})
+})
+NormalBc.on("collect", r => {
+  message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
+message.guild.members.forEach(m => {
+var NormalRep = args.replace('<server>' ,message.guild.name).replace('<user>', m).replace('<by>', `*{message.author.username}#*{message.author.discriminator}`)
+m.send(NormalRep);
+msg.delete();
+})
+})
+})
 }
-    console.log(x);
-    kboosh.createMessage(msg.channel.id, "Voice Online Members Now Are: **"+x+"** Members!");
-    kboosh.editChannel(kboosh_id, { name : "Devil Voice ⇏「"+x+"」"});
-    messages = [];
-}, 1);
-    }
 });
 
-
-  
-
-kboosh.connect("NDU1NTE1NjQ5NzYzMTgwNTU0.DkbtKA._BUN34JTb_W3ruGS7hdpo-E0iHY")
+client.login(process.env.BOT_TOKEN);
